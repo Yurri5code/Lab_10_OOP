@@ -1,21 +1,19 @@
-#ifndef TEACHERJOURNAL_H
-#define TEACHERJOURNAL_H
+#include "../include/mainwindow.h"
+#include <QApplication>
+#include <QSurfaceFormat>
 
-#include <vector>
-#include "smartpointer.h"
-#include "group.h"
-#include "subject.h"
-
-class TeacherJournal {
-    std::vector<SmartPointer<Group>> groups;
-    std::vector<SmartPointer<Subject>> subjects;
+int main(int argc, char *argv[]) {
+    QApplication a(argc, argv);
     
-public:
-    void addGroup(SmartPointer<Group> group);
-    void addSubject(SmartPointer<Subject> subject);
-    
-    const std::vector<SmartPointer<Group>>& getGroups() const;
-    const std::vector<SmartPointer<Subject>>& getSubjects() const;
-};
+    QSurfaceFormat fmt;
+    fmt.setRenderableType(QSurfaceFormat::OpenGL);
+    fmt.setVersion(2, 1);
+    fmt.setSwapBehavior(QSurfaceFormat::DoubleBuffer);
+    fmt.setSamples(4);
+    QSurfaceFormat::setDefaultFormat(fmt);
 
-#endif // TEACHERJOURNAL_H
+    MainWindow w;
+    w.show();
+    
+    return a.exec();
+}
